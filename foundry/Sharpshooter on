@@ -1,0 +1,15 @@
+let obj = {
+  'data.bonuses.rwak.attack' : "2-5", 
+  'data.bonuses.rwak.damage' : "10"
+};
+console.log(obj);
+actor.update(obj);
+
+ui.notifications.notify('Sharpshooter on!');
+
+let chatData = {
+  user: game.user._id,
+  speaker: ChatMessage.getSpeaker(),
+  content: 'Sharpshooter on!'
+};
+ChatMessage.create(chatData, {});
