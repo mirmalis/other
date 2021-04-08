@@ -15,7 +15,7 @@ javascript:(
           var y = window.nextElement.getBoundingClientRect().top + window.pageYOffset + -60;
           window.scrollTo({top: y, behavior: 'smooth'});
         } else {
-          return showNext()
+          return showNext();
         }
       }
     }
