@@ -5,7 +5,10 @@ javascript:(
         if (window.nextElement === undefined || window.nextElement === null){
             window.nextElement = document.querySelector(".lazyload-wrapper");
         } else {
-            window.nextElement = window.nextElement.nextElementSibling;
+          window.nextElement = window.nextElement.nextElementSibling;
+          if (window.nextElement === undefined || window.nextElement === null){
+            window.nextElement = document.querySelector(".lazyload-wrapper");
+          }
         }
         return window.nextElement !== undefined && window.nextElement !== null;
       }
@@ -16,6 +19,10 @@ javascript:(
         console.log('Error: could not find next element.')
       }
     }
-    showNext();
+    if (document.querySelector(".arrow-right") != null){
+      document.querySelector(".arrow-right").click();
+    } else {
+      showNext();
+    }
   }()
 )
