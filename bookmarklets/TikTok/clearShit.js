@@ -33,7 +33,7 @@ javascript: (
         })
       ;
     };
-    if (window.sdpClearInterval !== undefined && window.sdpClearInterval !== null) {
+    if (window.sdpClearInterval == null) {
       clearInterval(window.sdpClearInterval);
       alert("clearing stopped");
       delete window.sdpClearInterval;
