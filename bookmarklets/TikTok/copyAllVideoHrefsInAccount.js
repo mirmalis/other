@@ -9,7 +9,8 @@ javascript:(
       document.execCommand('copy');
       document.body.removeChild(el);
     };
-    copyToClipboard(Array.from(document.querySelectorAll(".video-feed-item a"))
-      .map(item => item.getAttribute("href")).join("\n"));
+    copyToClipboard(Array.from(
+      document.querySelectorAll(".video-feed-item a")).map(item => item.getAttribute("href")).join("\n")
+    );
   }()
 )
