@@ -9,6 +9,6 @@ javascript:(
       document.body.removeChild(el);
     };
     copyToClipboard(Array.from(document.querySelectorAll(".video-feed-item a"))
-    .map(item => item.getAttribute("href")).join(";"));
+    .map(item => item.getAttribute("href")).join(" "));
   }()
 )
