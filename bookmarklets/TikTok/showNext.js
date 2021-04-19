@@ -1,28 +1,51 @@
 javascript:(
   function(){ 
-    function showNext(){
-      function getNextElement() {
-        if (window.nextElement === undefined || window.nextElement === null){
-            window.nextElement = document.querySelector(".lazyload-wrapper");
-        } else {
-          window.nextElement = window.nextElement.nextElementSibling;
-          if (window.nextElement === undefined || window.nextElement === null){
-            window.nextElement = document.querySelector(".lazyload-wrapper");
+    document.onkeydown = (ev) => {
+      function showNext(shift){
+        function getElementToShow(shift) {
+          if (window.sdpNextElement == null){
+            window.sdpNextElement = document.querySelector(".lazyload-wrapper");
+          } else {
+            if(shift > 0){
+              window.sdpNextElement = window.sdpNextElement.nextElementSibling;
+    
+            } else if(shift < 0){
+              window.sdpNextElement = window.sdpNextElement.previousElementSibling;
+            }
+            if (window.sdpNextElement === undefined || window.sdpNextElement === null){
+              window.sdpNextElement = document.querySelector(".lazyload-wrapper");
+            }
           }
+          return window.sdpNextElement !== undefined && window.sdpNextElement !== null;
         }
-        return window.nextElement !== undefined && window.nextElement !== null;
+        if(getElementToShow(shift)){
+          var y = window.sdpNextElement.getBoundingClientRect().top + window.pageYOffset + -60;
+          setTimeout(() => window.scrollTo({top: y, behavior: 'smooth'}), 5);
+        } else {
+          console.log('Error: could not find next element.')
+        }
       }
-      if(getNextElement()){
-        var y = window.nextElement.getBoundingClientRect().top + window.pageYOffset + -60;
-        window.scrollTo({top: y, behavior: 'smooth'});
-      } else {
-        console.log('Error: could not find next element.')
+      switch (ev.key) {
+        case "ArrowRight":
+          if (document.querySelector(".arrow-right") != null){
+            document.querySelector(".arrow-right").click();
+          } else {
+            showNext(1);
+          }
+          break;
+        case "ArrowLeft":
+          if (document.querySelector(".arrow-right") != null){
+            document.querySelector(".arrow-right").click();
+          } else {
+            showNext(-1);
+          }
+          break;
+        case "Home":
+          window.sdpNextElement = document.querySelector(".lazyload-wrapper");
+          break;
+        default:
+          break;
       }
-    }
-    if (document.querySelector(".arrow-right") != null){
-      document.querySelector(".arrow-right").click();
-    } else {
-      showNext();
-    }
+    };
   }()
 )
