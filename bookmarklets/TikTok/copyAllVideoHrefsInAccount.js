@@ -11,7 +11,7 @@ javascript:(
     };
     copyToClipboard(
       Array.from(
-        document.querySelectorAll(".video-feed-item a")
+        document.querySelectorAll("[data-e2e=user-post-item] a")
       ).map(item => item.getAttribute("href"))
       .join("\n")
     );
